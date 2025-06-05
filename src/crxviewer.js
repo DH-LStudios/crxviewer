@@ -23,6 +23,22 @@
 
 'use strict';
 
+(function applyTheme() {
+    var storageArea = chrome && chrome.storage && chrome.storage.sync;
+    function setTheme(pref) {
+        var useDark = typeof pref === 'boolean' ? pref :
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark-theme', useDark);
+    }
+    if (storageArea) {
+        storageArea.get('useDarkTheme', function(items) {
+            setTheme(items && items.useDarkTheme);
+        });
+    } else {
+        setTheme();
+    }
+})();
+
 // crx_url is globally set to the URL of the shown file for ease of debugging.
 // If there is no URL (e.g. with  <input type=file>), then crx_url is the file name.
 
