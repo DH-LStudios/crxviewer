@@ -29,6 +29,12 @@
     #download:not(.downloading) .busy {
         display: none;
     }
+    @media (prefers-color-scheme: dark) {
+        body {background:#202124;color:#eee;}
+        button {background:#333;color:#eee;}
+    }
+    .dark-theme body {background:#202124;color:#eee;}
+    .dark-theme button {background:#333;color:#eee;}
 </style>
 </head>
 <body>
@@ -48,5 +54,20 @@
 <script src="chrome-platform-info.js"></script>
 <script src="cws_pattern.js"></script>
 <script src="popup.js"></script>
+<script>
+  (function(){
+    var storage = chrome && chrome.storage && chrome.storage.sync;
+    function apply(pref){
+      var useDark = typeof pref === 'boolean' ? pref :
+        window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.classList.toggle('dark-theme', useDark);
+    }
+    if(storage){
+      storage.get('useDarkTheme', function(it){apply(it && it.useDarkTheme);});
+    }else{
+      apply();
+    }
+  })();
+</script>
 </body>
 </html>

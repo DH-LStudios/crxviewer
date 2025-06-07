@@ -10,9 +10,13 @@
 
 var storageArea = chrome.storage.sync;
 var contextmenuPatternsInput = document.getElementById('contextmenuPatterns');
+var darkThemeCheckbox = document.getElementById('darktheme');
 document.getElementById('contextmenu').onchange = function() {
     storageArea.set({showContextMenu: this.checked});
     contextmenuPatternsInput.disabled = !this.checked;
+};
+darkThemeCheckbox.onchange = function() {
+    storageArea.set({useDarkTheme: this.checked});
 };
 
 contextmenuPatternsInput.oninput = function() {
@@ -56,6 +60,7 @@ storageArea.get({
 //#if FIREFOX
     showPageAction: true,
 //#endif
+    useDarkTheme: null,
 }, function(items) {
     document.getElementById('contextmenu').checked = items.showContextMenu;
     contextmenuPatternsInput.disabled = !items.showContextMenu;
@@ -63,6 +68,7 @@ storageArea.get({
 //#if FIREFOX
     document.getElementById('pageaction').checked = items.showPageAction;
 //#endif
+    darkThemeCheckbox.checked = items.useDarkTheme === true;
 });
 
 //#if FIREFOX

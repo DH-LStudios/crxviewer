@@ -74,3 +74,51 @@
 li:hover {
     background: #EEE;
 }
+
+@media (prefers-color-scheme: dark) {
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #9ca0a6;
+  }
+  .token.punctuation,
+  .token.string,
+  .token.atrule,
+  .token.attr-value {
+    color: #8ab4f8;
+  }
+  .token.property,
+  .token.tag {
+    color: #57b366;
+  }
+  .odd-code-line {
+    background: #2b2b2b;
+  }
+  li:hover {
+    background: #333;
+  }
+}
+
+html.dark-theme .token.comment,
+html.dark-theme .token.prolog,
+html.dark-theme .token.doctype,
+html.dark-theme .token.cdata {
+  color: #9ca0a6;
+}
+html.dark-theme .token.punctuation,
+html.dark-theme .token.string,
+html.dark-theme .token.atrule,
+html.dark-theme .token.attr-value {
+  color: #8ab4f8;
+}
+html.dark-theme .token.property,
+html.dark-theme .token.tag {
+  color: #57b366;
+}
+html.dark-theme .odd-code-line {
+  background: #2b2b2b;
+}
+html.dark-theme li:hover {
+  background: #333;
+}

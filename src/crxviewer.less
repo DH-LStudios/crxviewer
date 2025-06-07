@@ -409,3 +409,53 @@ img:hover {
 }
 
 @import (less) "search-tools.less";
+
+.dark-theme-styles() {
+    body {
+        background: #202124;
+        color: #eee;
+    }
+    #left-panel {
+        background-color: #2b2b2b;
+        > .resizer {
+            background-color: #444;
+            &:hover {
+                background-color: #666;
+            }
+        }
+    }
+    #file-list {
+        li:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        li.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        li.file-selected {
+            background-color: #264f78;
+        }
+        .file-dir {
+            color: #ccc;
+        }
+    }
+    footer {
+        border-top-color: #559;
+    }
+    .content-verifier-output {
+        background: #202124;
+        border-color: #559;
+    }
+    .search-result-highlight,
+    .file-specific-toolbar .find-all-enabled {
+        outline: 1px solid orange;
+        background: rgba(255, 255, 100, 0.15);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark-theme-styles();
+}
+
+html.dark-theme {
+    .dark-theme-styles();
+}
